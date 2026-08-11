@@ -1,0 +1,49 @@
+responses
+/
+200
+/
+[]
+.
+Year
+JSON Response structure for historical gov contracts endpoint.
+
+array of:
+Ticker
+string
+required
+Company ticker
+
+Amount
+string
+required
+Total dollars obligated under the given contract
+
+Qtr
+integer
+required
+Calendar quarter
+
+Year
+integer
+required
+Year of the contract announcement
+
+Token
+:
+ticker*
+:
+Send API Request
+library(httr)
+
+url <- "https://api.quiverquant.com/beta/historical/govcontracts/{ticker}"
+
+response <- VERB("GET", url, add_headers('Authorization' = 'Bearer 123'), content_type("application/octet-stream"), accept("application/json"))
+
+content(response, "text")
+[
+  {
+    "Ticker": "string",
+    "Amount": "string",
+    "Qtr": 0,
+    "Year": 0
+  }
